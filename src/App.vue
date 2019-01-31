@@ -15,7 +15,7 @@
         name: 'app',
         data() {
             return {
-                carName: 'Volga GAZ-24 from parent',
+                carName: 'Ford',
                 carYear: 2002
             }
         },
