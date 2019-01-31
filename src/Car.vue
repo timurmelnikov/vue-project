@@ -2,6 +2,7 @@
     <div class="car">
         <h3>Name: {{carName}} / {{reverseName}}</h3>
         <p>Year: {{carYear}}</p>
+        <button @click="changeName()">Изменить имя</button>
 
     </div>
 </template>
@@ -25,6 +26,13 @@
                 default: 'Default car'
             },
             carYear: Number
+        },
+        methods:{
+            changeName:function () {
+                this.carName = 'Mazda'
+                //Создаем событие nameChanged и передаем в него параметр
+                this.$emit('nameChanged', this.carName)
+            }
         },
         computed: {
             reverseName: function () {
