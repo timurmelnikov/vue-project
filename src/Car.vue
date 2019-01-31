@@ -2,33 +2,25 @@
     <div class="car">
         <h3>Name: {{carName}} / {{reverseName}}</h3>
         <p>Year: {{carYear}}</p>
-        <button @click="changeName()">Изменить имя</button>
+        <button @click="changeName()">Change name</button>
+        <button @click="changeFunc()">Change from parent</button>
 
     </div>
 </template>
 
 <script>
     export default {
-         //1-й вариант
-        //props: ['carName', 'carYear'],
-
-        //2-й вариант
-        // props:{
-        //     carName: String,
-        //     carYear: Number
-        // },
-
-        //3-й вариант
         props: {
             carName: {
                 type: String,
                 //required: true,
                 default: 'Default car'
             },
-            carYear: Number
+            carYear: Number,
+            changeFunc: Function
         },
-        methods:{
-            changeName:function () {
+        methods: {
+            changeName: function () {
                 this.carName = 'Mazda'
                 //Создаем событие nameChanged и передаем в него параметр
                 this.$emit('nameChanged', this.carName)

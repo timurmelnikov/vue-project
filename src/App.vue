@@ -4,6 +4,7 @@
         <app-car
                 :carName="carName"
                 :carYear="carYear"
+                :changeFunc="changeNameToAudi"
                 @nameChanged="carName = $event"
         ></app-car>
     </div>
@@ -18,6 +19,12 @@
             return {
                 carName: 'Ford',
                 carYear: 2002
+            }
+        },
+        methods:{
+            changeNameToAudi:function () {
+                this.carName = 'Audi'
+                
             }
         },
         components: {
