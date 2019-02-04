@@ -10,6 +10,8 @@
 </template>
 
 <script>
+    import {eventEmitter} from './main.js'
+
     export default {
         props: {
             carName: {
@@ -18,8 +20,7 @@
                 default: 'Default car'
             },
             carYear: Number,
-            changeFunc: Function,
-            counter: Number
+            changeFunc: Function
         },
         methods: {
             changeName: function () {
@@ -27,9 +28,9 @@
                 //Создаем событие nameChanged и передаем в него параметр
                 this.$emit('nameChanged', this.carName)
             },
-            updateCounter:function () {
-                this.$emit('counterUpdated', this.counter+1)
-                
+            updateCounter: function () {
+                //this.$emit('counterUpdated', this.counter + 1)
+                eventEmitter.$emit('counterUpdated', 3)
             }
         },
         computed: {
