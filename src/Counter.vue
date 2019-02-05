@@ -1,21 +1,15 @@
 <template>
-    <h1>Counter: {{counter}}</h1>
+    <div>
+        <h2>Counter</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, dignissimos!</p>
+    </div>
 </template>
 
 <script>
-
-    import {eventEmitter} from './main.js';
-
-    export default {
-        data() {
-            return {
-                counter: 0
-            }
-        },
-        created() {
-            eventEmitter.$on('counterUpdated', (num) => {
-                this.counter+=num
-            })
-        }
-    }
+    export default {}
 </script>
+<style scoped>
+    h2 {
+        color: red;
+    }
+</style>
