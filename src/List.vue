@@ -5,32 +5,21 @@
         <ul>
             <li v-for="name of filtredNames">{{name}}</li>
         </ul>
-
-        <hr>
-        <app-list></app-list>
     </div>
 </template>
 
 <script>
     import ListMixin from './listMixin.js'
-
     export default {
-        data() {
+        data(){
             return {
-                title: 'Привет! Я Vue!',
+                title: 'List',
             }
         },
-        mixins: [ListMixin],
-        filters: {
-            lowercase(value) {
-                return value.toLowerCase()
-            }
-        },
-
+        mixins: [ListMixin]
     }
 </script>
 
 <style scoped>
+
 </style>
-
-
