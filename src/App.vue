@@ -1,32 +1,18 @@
 <template>
     <div>
-        <h2>{{title}}</h2>
-        <input type="text" v-model="searchName">
-        <ul>
-            <li v-for="name of filtredNames">{{name}}</li>
-        </ul>
-
-        <hr>
-        <app-list></app-list>
+        <h2>Form inputs</h2>
+        <input type="text" v-model.lazy="name">
+        <p>{{name}}</p>
     </div>
 </template>
 
 <script>
-    import ListMixin from './listMixin.js'
-
     export default {
         data() {
             return {
-                title: 'Привет! Я Vue!',
+                name: 'initial state',
             }
-        },
-        mixins: [ListMixin],
-        filters: {
-            lowercase(value) {
-                return value.toLowerCase()
-            }
-        },
-
+        }
     }
 </script>
 
