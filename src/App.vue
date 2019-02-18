@@ -1,8 +1,23 @@
 <template>
     <div>
         <h2>Form inputs</h2>
-        <textarea v-model="textarea">{{textarea}}</textarea>
-        <p>{{textarea}}</p>
+        <label>
+            <input v-model="social" type="checkbox" value="instagram">
+            Instagram
+        </label>
+        <label>
+            <input v-model="social" type="checkbox" value="vk">
+            Vk
+        </label>
+        <label>
+            <input v-model="social" type="checkbox" value="facebook">
+            Facebook
+        </label>
+
+        <hr>
+        <ul>
+            <li v-for="val in social">{{val}}</li>
+        </ul>
     </div>
 </template>
 
@@ -10,22 +25,15 @@
     export default {
         data() {
             return {
-                textarea: `initial state
-state`,
+                social: ['vk']
+
             }
         }
     }
 </script>
 
 <style scoped>
-    textarea {
-        height: 100px;
-        width: 400px;
-    }
 
-    p {
-        white-space: pre;
-    }
 </style>
 
 
