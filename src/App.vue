@@ -7,21 +7,31 @@
                         class="form-control"
                         id="email"
                         type="email"
+                        @blur="$v.email.$touch()"
                         v-model="email"
                 >
             </div>
+            <pre>{{$v.email}}</pre>
+
         </form>
-        <p>{{email}}</p>
+
     </div>
 
 </template>
 
 <script>
+    import { required, email} from 'vuelidate/lib/validators'
     export default {
         data(){
             return{
                 email:''
 
+            }
+        },
+        validations:{
+            email:{
+                required: required, //Можно писать так - required
+                email
             }
         }
     }
