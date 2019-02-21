@@ -14,6 +14,40 @@
                 <div class="invalid-feedback" v-if="!$v.email.required">Поле email обязательно</div>
                 <div class="invalid-feedback" v-if="!$v.email.email">Поле email, должно содержать email</div>
             </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                        :class="{'is-invalid': $v.password.$error}"
+                        @blur="$v.password.$touch()"
+                        class="form-control"
+                        id="password"
+                        type="password"
+                        v-model="password"
+                >
+                <div class="invalid-feedback" v-if="!$v.password.required">
+                    Поле password обязательно
+                </div>
+                <div class="invalid-feedback" v-if="!$v.password.minLength">
+                    Поле password - минимум {{$v.password.$params.minLength.min}} символов, а у вас -
+                    {{password.length}}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm">Confirm password</label>
+                <input
+                        :class="{'is-invalid': $v.confirmPassword.$error}"
+                        @blur="$v.confirmPassword.$touch()"
+                        class="form-control"
+                        id="confirm"
+                        type="password"
+                        v-model="confirmPassword"
+                >
+                <div class="invalid-feedback" v-if="!$v.confirmPassword.sameAs">
+                    Пароли не совпадают
+                </div>
+            </div>
             <pre>{{$v.email}}</pre>
         </form>
     </div>
@@ -21,17 +55,34 @@
 </template>
 
 <script>
-    import {required, email} from 'vuelidate/lib/validators'
+    import {required, email, minLength, sameAs} from 'vuelidate/lib/validators'
+
     export default {
         data() {
             return {
-                email: ''
+                email: '',
+                password: '',
+                confirmPassword: ''
             }
         },
         validations: {
             email: {
                 required: required, //Можно писать так - required
                 email
+            },
+            password: {
+                required,
+                minLength: minLength(6)
+
+            },
+            // confirmPassword:{
+            //     sameAs: sameAs('password')
+            // }
+            confirmPassword:{
+                sameAs: sameAs((vue)=>{
+                    return vue.password
+                })
+
             }
         }
     }
