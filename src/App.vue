@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <form class="pt-3">
+        <form class="pt-3" @submit.prevent="onSubmit">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input
@@ -49,7 +49,12 @@
                     Пароли не совпадают
                 </div>
             </div>
-            <pre>{{$v.email}}</pre>
+            <button
+                    type="submit"
+                    class="btn btn-success"
+                    :disabled="$v.$invalid"
+            >Отправить
+            </button>
         </form>
     </div>
 
@@ -66,6 +71,13 @@
                 confirmPassword: ''
             }
         },
+        methods: {
+            onSubmit: function () {
+                console.log('Email', this.email)
+                console.log('Password', this.password)
+                //alert('Отправлено!')
+            }
+        },
         validations: {
             email: {
                 required: required, //Можно писать так - required
@@ -76,12 +88,8 @@
                         setTimeout(() => {
                             const value = newEmail !== 'timur@ukr.net'
                             resolve(value)
-                        }, 3000)
+                        }, 1500)
                     })
-
-                    // if (newEmail !== 'timur@ukr.net'){
-                    //     return true
-                    // }
                     return false
                 }
             },
@@ -90,9 +98,6 @@
                 minLength: minLength(6)
 
             },
-            // confirmPassword:{
-            //     sameAs: sameAs('password')
-            // }
             confirmPassword: {
                 sameAs: sameAs((vue) => {
                     return vue.password
