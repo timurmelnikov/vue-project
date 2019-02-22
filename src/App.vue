@@ -13,6 +13,7 @@
                 >
                 <div class="invalid-feedback" v-if="!$v.email.required">Поле email обязательно</div>
                 <div class="invalid-feedback" v-if="!$v.email.email">Поле email, должно содержать email</div>
+                <div class="invalid-feedback" v-if="!$v.email.uniqueEmail">Поле email, должно быть уникальным</div>
             </div>
 
             <div class="form-group">
@@ -68,7 +69,21 @@
         validations: {
             email: {
                 required: required, //Можно писать так - required
-                email
+                email,
+                uniqueEmail: function (newEmail) {
+                    if (newEmail === '') return true
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            const value = newEmail !== 'timur@ukr.net'
+                            resolve(value)
+                        }, 3000)
+                    })
+
+                    // if (newEmail !== 'timur@ukr.net'){
+                    //     return true
+                    // }
+                    return false
+                }
             },
             password: {
                 required,
@@ -78,8 +93,8 @@
             // confirmPassword:{
             //     sameAs: sameAs('password')
             // }
-            confirmPassword:{
-                sameAs: sameAs((vue)=>{
+            confirmPassword: {
+                sameAs: sameAs((vue) => {
                     return vue.password
                 })
 
