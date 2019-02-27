@@ -3,17 +3,10 @@
         <h1>Car id {{id}}</h1>
         <button class="btn btn-sm btn-info mb-2" @click="goBackToCars">Back</button>
         <br>
-        <!--<router-link-->
-        <!--class="btn btn-sm btn-primary mt-2"-->
-        <!--tag="button"-->
-        <!--:to="'/car/'+id+'/full'"-->
-        <!--&gt;Full info-->
-        <!--</router-link>-->
         <router-link
                 class="btn btn-sm btn-primary mt-2"
                 tag="button"
-                :to="{name: 'carFull', params:{id: id}}"
-
+                :to="{name: 'carFull', params:{id: id}, query:{name:'Mazda',year:2000}}"
         >Full info
         </router-link>
         <hr>

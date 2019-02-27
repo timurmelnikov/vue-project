@@ -27,5 +27,4 @@ export default new VueRouter({
         },
     ],
     mode: 'history' //Избавляемся от # в адресе
-
 })
