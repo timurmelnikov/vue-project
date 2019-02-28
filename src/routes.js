@@ -26,5 +26,17 @@ export default new VueRouter({
             }]
         },
     ],
-    mode: 'history' //Избавляемся от # в адресе
+    mode: 'history', //Избавляемся от # в адресе
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        }
+        if (to.hash) {
+            return {selector: to.hash}
+        }
+        return {
+            x: 0,
+            y: 0
+        }
+    }
 })
