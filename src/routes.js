@@ -1,9 +1,27 @@
 import VueRouter from 'vue-router'
 import Home from './pages/Home'
-import Cars from './pages/Cars'
-import Car from './pages/Car'
+//import Cars from './pages/Cars'
+//import Car from './pages/Car'
 import ErrorCmp from './pages/Error'
 import CarFull from './pages/CarFull'
+
+
+
+const Cars =  resolve =>{
+    require.ensure(['./pages/Cars'], ()=>{
+       resolve(
+           require('./pages/Cars')
+       )
+    })
+}
+
+const Car =  resolve =>{
+    require.ensure(['./pages/Car.vue'], ()=>{
+        resolve(
+            require('./pages/Car.vue')
+        )
+    })
+}
 
 export default new VueRouter({
     routes: [
