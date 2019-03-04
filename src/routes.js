@@ -24,7 +24,15 @@ export default new VueRouter({
             children: [{
                 path: 'full', //http://localhost:8080/car/3/full
                 component: CarFull,
-                name: 'carFull'
+                name: 'carFull',
+                beforeEnter (to, from, next) {
+                    console.log('beforeEnter')
+                    if(true){
+                        next(true)
+                    } else {
+                        next(false)
+                    }
+                }
             }]
         },
         {
