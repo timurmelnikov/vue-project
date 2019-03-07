@@ -24,6 +24,11 @@
       "name": "test",
       "year": 1111,
       "id": 5
+    },
+    {
+      "name": "KAMAZ",
+      "year": 2015,
+      "id": 6
     }
   ]
 }
